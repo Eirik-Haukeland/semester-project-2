@@ -2,7 +2,7 @@
   "name": "semester-project-2",
   "description": "Semester Project 2",
   "version": "0.0.1",
-  "main": "src/main.js",
+  "main": "src/js/main.js",
   "devDependencies": {
     "autoprefixer": "^10.4.15",
     "eslint": "^8.49.0",
@@ -265,8 +265,20 @@
     "yocto-queue": "^0.1.0"
   },
   "scripts": {
-    "test": "jest",
-    "dev": ""
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
+    "dev": "npx postcss && live-server",
+    "lint-check": "eslint ./src/**/* && prettier -c ./src/*",
+    "lint-fix": "eslint --fix ./src/**/* && prettier --write ./src/**/*"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "src/**/*.{scss,md,html}": "prettier --write"
+  },
+  "eslintConfig": {
+    "extends": "airbnb"
   },
   "author": "Eirik Berget Haukeland",
   "license": "ISC"
