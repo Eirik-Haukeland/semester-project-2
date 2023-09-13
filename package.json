@@ -9,6 +9,7 @@
     "eslint-config-airbnb": "^19.0.4",
     "live-server": "^1.2.2",
     "postcss": "^8.4.29",
+    "postcss-cli": "^10.1.0",
     "prettier": "^3.0.3",
     "tailwindcss": "^3.3.3"
   },
@@ -266,7 +267,8 @@
   },
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest",
-    "dev": "npx postcss && live-server",
+    "watch": "postcss ./src/css/main.css -o ./public/styles.css --watch",
+    "dev": "postcss ./src/css/main.css -o ./public/styles.css",
     "lint-check": "eslint ./src/**/* && prettier -c ./src/*",
     "lint-fix": "eslint --fix ./src/**/* && prettier --write ./src/**/*"
   },
