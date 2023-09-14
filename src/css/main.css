@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#hero-section {
+    height: 20rem;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80%);
+}
+
+#hero-img {
+    background-image: url("../.././public/assets/hero-image-300.jpg");
+    background-size: cover;
+    background-position: 95%;
+}
