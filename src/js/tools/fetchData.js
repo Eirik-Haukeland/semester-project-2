@@ -5,13 +5,11 @@
  */
 export default async (path) => {
   try {
-    if (typeof path !== "string") {
-      throw new TypeError("ERROR: Argument must be a string");
+    if (typeof path !== 'string') {
+      throw new TypeError('ERROR: Argument must be a string');
     }
 
-    const response = await fetch(
-      `https://api.noroff.dev/api/v1/auction/${path}`,
-    );
+    const response = await fetch(`https://api.noroff.dev/api/v1/auction/${path}`);
 
     if (!response.ok) {
       throw response.error;

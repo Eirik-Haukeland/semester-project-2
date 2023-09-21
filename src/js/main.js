@@ -1,3 +1,5 @@
-import getAllAuctions from "./get-all-auctions.js";
+import search from './search.js';
+import setupSearchEvent from './tools/setupSearchEvent.js';
 
-getAllAuctions();
+setupSearchEvent('sort-by');
+search();

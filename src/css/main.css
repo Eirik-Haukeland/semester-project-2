@@ -12,3 +12,29 @@
     background-size: cover;
     background-position: 95%;
 }
+
+input[name="tagOption"]:checked + label {
+    color: rgb(255 255 255);
+    background-color: rgb(131 24 67);
+
+    /*move active tag upp in the div*/
+    order: -888;
+}
+
+input[name="tagOption"]:checked ~ #tagOption-close + label {
+    /*show the 'all auctions' option when an other tag is selected*/
+    display: block;
+}
+
+/* style the scroll bar */
+::-webkit-scrollbar {
+    width: 1em;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(243 244 246);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(131 24 67);
+}

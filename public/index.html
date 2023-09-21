@@ -8,7 +8,8 @@
     <title>Shop a ton</title>
   </head>
   <body class="flex flex-col h-screen">
-  <header class="flex flex-row justify-between px-12 bg-pink-900 text-white h-20 items-center">
+
+  <header class="flex justify-between text-2xl py-5 px-12 xl:px-64 bg-pink-900 text-white min-h-20 max-h-min items-center">
     <span class="uppercase font-bold">shop a ton</span>
     <button>
       <img class="stroke-current" alt="user menu" src="public/assets/profile-picture.svg">
@@ -16,22 +17,45 @@
   </header>
   <main class="grow">
     <h1 class="sr-only">Welcome to shop a ton!</h1>
-    <section class="sm:pl-12 flex flex-col sm:flex-row bg-blue-200" id="hero-section" aria-labelledby="hero-title">
+    <section class="sm:pl-12 xl:pl-64 flex flex-col gap-32 sm:flex-row bg-gray-200 h-min text-2xl" id="hero-section" aria-labelledby="hero-title">
       <h2 hidden id="hero-title">signe up or register an account</h2>
-      <div class="sm:w-2/5 py-5 gap-y-2 sm:py-0 sm:gap-y-0 grid grid-cols-2 gap-x-2 justify-items-stretch items-stretch h-full sm:pr-12">
+      <div class="sm:w-2/5 py-5 gap-y-2 sm:py-0 sm:gap-y-0 grid grid-cols-2 gap-x-2 justify-items-stretch items-stretch h-full">
         <p class="col-span-2 justify-self-center self-center w-1/2 sm:w-full">Here you can  sell all your unwanted stuff, and get new stuff someone lese don’t want!</p>
         <button class="capitalize rounded bg-pink-900 text-white px-5 py-1 justify-self-end h-min sm:3/5 lg:w-1/2">register</button>
         <button class="capitalize rounded bg-neutral-700 text-white px-5 py-1 justify-self-start h-min sm:3/5 lg:w-1/2">login</button>
       </div>
-      <div class="sm:w-3/5 h-full" id="hero-img"></div>
+      <div class="sm:w-3/5" id="hero-img"></div>
     </section>
-    <section class="px-12" aria-labelledby="auctions-title">
+    <section class="px-12 xl:px-64 flex flex-col gap-8 pb-12" aria-labelledby="auctions-title" id="auctions">
       <h2 class="text-3xl font-bold" id="auctions-title">Current Auctions</h2>
 
+      <section class="grid grid-cols-4 gap-4 items-center" aria-labelledby="search-filter-heading">
+        <h3 id="search-filter-heading" class="sr-only">filter the search</h3>
+
+        <fieldset id="search-tags-container" class="max-[500px]:col-span-4 col-span-3 flex flex-wrap gap-2 max-h-24 pb-1 overflow-y-auto">
+          <legend class="sr-only">Filter with tags</legend>
+        </fieldset>
+
+        <div class="row-1 col-start4 [500px]:justify-self-end max-[500px]:col-span-4" hidden>
+          <!-- todo: update to match style -->
+          <input disabled type="checkbox" name="search-your-auctinos" id="search-your-auctions" class="mr-2 mt-[0.3rem] h-3.5 w-8 appearance-none rounded-[0.4375rem] bg-neutral-300 before:pointer-events-none before:absolute before:h-3.5 before:w-3.5 before:rounded-full before:bg-transparent before:content-[''] after:absolute after:z-[2] after:-mt-[0.1875rem] after:h-5 after:w-5 after:rounded-full after:border-none after:bg-neutral-100 after:shadow-[0_0px_3px_0_rgb(0_0_0_/_7%),_0_2px_2px_0_rgb(0_0_0_/_4%)] after:transition-[background-color_0.2s,transform_0.2s] after:content-[''] checked:bg-primary checked:after:absolute checked:after:z-[2] checked:after:-mt-[3px] checked:after:ml-[1.0625rem] checked:after:h-5 checked:after:w-5 checked:after:rounded-full checked:after:border-none checked:after:bg-primary checked:after:shadow-[0_3px_1px_-2px_rgba(0,0,0,0.2),_0_2px_2px_0_rgba(0,0,0,0.14),_0_1px_5px_0_rgba(0,0,0,0.12)] checked:after:transition-[background-color_0.2s,transform_0.2s] checked:after:content-[''] hover:cursor-pointer focus:outline-none focus:ring-0 focus:before:scale-100 focus:before:opacity-[0.12] focus:before:shadow-[3px_-1px_0px_13px_rgba(0,0,0,0.6)] focus:before:transition-[box-shadow_0.2s,transform_0.2s] focus:after:absolute focus:after:z-[1] focus:after:block focus:after:h-5 focus:after:w-5 focus:after:rounded-full focus:after:content-[''] checked:focus:border-primary checked:focus:bg-primary checked:focus:before:ml-[1.0625rem] checked:focus:before:scale-100 checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca] checked:focus:before:transition-[box-shadow_0.2s,transform_0.2s] dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]">
+          <label for="search-your-auctions">Your Auctions</label>
+        </div>
+
+        <fieldset class="col-start-4 flex justify-content-center content-center w-min self-start [500px]:justify-self-end overflow-clip max-[500px]:col-span-4">
+          <legend class="sr-only">Sort by</legend>
+          <input type="radio" checked name="sort-by" id="sort-by-newest" class="peer/newest sr-only" value="created">
+          <label for="sort-by-newest" class="peer-checked/newest:bg-pink-900 peer-checked/newest:text-white p-2 bg-gray-200 whitespace-nowrap font-bold rounded-l-md border-2 border-pink-900">Newest item</label>
+          <input type="radio" name="sort-by" id="sort-by-ends-soon" class="peer/ends sr-only" value="endsAt">
+          <label for="sort-by-ends-soon" class="peer-checked/ends:bg-pink-900 peer-checked/ends:text-white p-2 bg-gray-200 whitespace-nowrap font-bold rounded-r-md border-2 border-pink-900">Ends soon</label>
+        </fieldset>
+      </section>
+      <div id="resault" class="flex flex-col md:flex-row sm:flex-wrap gap-4 md:gap-10"></div>
+      <div id="paginationAria" class="flex content-center justify-center w-full"></div>
     </section>
   </main>
-  <footer class="flex flex-row justify-center items-center bg-pink-900 text-white h-20">
-    <span>&#169; 2023 shop a ton</span>
+  <footer class="py-2 flex flex-row justify-center items-center bg-pink-900 text-white h-20">
+    <span class="font-bold text-xl">&#169; 2023 shop a ton</span>
   </footer>
   </body>
 </html>
