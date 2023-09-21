@@ -12,11 +12,17 @@
   <header class="flex justify-between text-2xl py-5 px-12 xl:px-64 bg-pink-900 text-white min-h-20 max-h-min items-center">
     <span class="uppercase font-bold">shop a ton</span>
     <button>
-      <img class="stroke-current" alt="user menu" src="public/assets/profile-picture.svg">
+      <svg width="84" height="85" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M22.6825 76.3874C22 73.8208 22 69.8824 22 63.5C22 54.0842 28.1968 46.1158 36.7346 43.4505L37.4 42.5L37.3109 42.3727C34.1276 39.8531 32 35.493 32 31.5C32 25.4249 36.9249 20.5 43 20.5C49.0751 20.5 54 25.4249 54 31.5C54 35.493 51.8724 39.8531 48.6891 42.3727L48.6 42.5L49.2654 43.4505C57.8032 46.1158 64 54.0842 64 63.5C64 64.9562 64.0131 66.275 64.025 67.4723C64.0571 70.7115 64.0804 73.0609 63.8118 74.835C74.1822 67.8259 81 55.9591 81 42.5C81 20.9609 63.5391 3.5 42 3.5C20.4609 3.5 3 20.9609 3 42.5C3 57.0107 10.9248 69.6705 22.6825 76.3874ZM42.9552 84.4893C42.6377 84.4964 42.3193 84.5 42 84.5C18.804 84.5 0 65.696 0 42.5C0 19.304 18.804 0.5 42 0.5C65.196 0.5 84 19.304 84 42.5C84 65.3452 65.7604 83.9303 43.0493 84.4872L43 84.5L42.9552 84.4893Z" fill="white"/>
+      </svg>
+      <span class="sr-only">User Menu</span>
     </button>
   </header>
   <main class="grow">
     <h1 class="sr-only">Welcome to shop a ton!</h1>
+    <dialog id="user-menu" open class="w-screen min-[400px]:w-fit h-max bg-gray-200 rounded-bl-lg max-[400px]:rounded-br-lg flex flex-col">
+
+    </dialog>
     <section class="sm:pl-12 xl:pl-64 flex flex-col gap-32 sm:flex-row bg-gray-200 h-min text-2xl" id="hero-section" aria-labelledby="hero-title">
       <h2 hidden id="hero-title">signe up or register an account</h2>
       <div class="sm:w-2/5 py-5 gap-y-2 sm:py-0 sm:gap-y-0 grid grid-cols-2 gap-x-2 justify-items-stretch items-stretch h-full">

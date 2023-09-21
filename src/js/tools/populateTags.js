@@ -1,4 +1,4 @@
-import makeTag from './makeTag.js';
+import makeTag from '../ui/makeTag.js';
 import setupSearchEvent from './setupSearchEvent.js';
 
 export default (tagSet) => {

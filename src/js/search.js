@@ -1,4 +1,4 @@
-import fetchData from "./tools/fetchData.js";
+import fetchRequester from "./tools/fetchRequester.js";
 import populateTags from "./tools/populateTags.js";
 import populateAuctions from "./tools/populateAuctions.js";
 
@@ -14,7 +14,7 @@ export default async () => {
 
   console.log(`${userAuctions}listings?_bids=true${searchSort}${searchTag}`)
 
-  const data = await fetchData(`${userAuctions}listings?_bids=true${searchSort}${searchTag}`);
+  const data = await fetchRequester(`${userAuctions}listings?_bids=true${searchSort}${searchTag}`);
 
   let count = -1
   // only change tags when not searching with a tag

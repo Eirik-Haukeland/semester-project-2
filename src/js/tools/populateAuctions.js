@@ -1,4 +1,4 @@
-import makeCard from './makeCard.js';
+import makeCard from '../ui/makeCard.js';
 import timestamp from './timestamp.js';
 
 const addAuctions = (auctionArray, placementLocation) => {
