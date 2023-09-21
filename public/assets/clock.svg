@@ -1,0 +1,13 @@
+<svg class="h-full w-full bg-cover ${ lessThanADay ? 'fill-pink-900 stroke-white' : ''}" height="100%" width="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle
+        cx="50%"
+        cy="50%"
+        r="50%"
+        fill="currentColor"
+    ></circle>
+    <polyline
+        stroke-width="5%"
+        stroke="rgb(255,255,255)"
+        points="50,10 50,50 65,65"
+    ></polyline>
+</svg>
