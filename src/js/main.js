@@ -1,22 +1,30 @@
 import search from './search.js';
 import setupSearchEvent from './tools/setupSearchEvent.js';
-import loginRegister from "./auth/authFromSetup.js";
+import loginRegister from "./ui/authFromSetup.js";
+import profileMenu from "./ui/profileMenu.js";
 
 setupSearchEvent('sort-by');
 search();
 
 setInterval(() => {
   const isLoggedIn = localStorage.getItem('accessToken') !== null
-  const authForm = document.getElementById('auth-action-form')
+  let authForm = document.getElementById('auth-action-form')
+  let profileMenuDiv = document.getElementById('profile-menu')
   const userMenu = document.getElementById('user-menu')
+  const userAuctions = document.getElementById('user-auctions')
 
   if (!isLoggedIn && authForm === null) {
     loginRegister()
-    const heroButtons = document.querySelectorAll('#hero-section button, header button')
+    userAuctions.hidden = true
+    userAuctions.querySelector('input[type="checkbox"]').setAttribute('disabled', 'disabled')
+
+    const heroButtons = document.querySelectorAll('#hero-section button')
     heroButtons.forEach(button => {
-      // console.log(button, button.innerText)
+
+    profileMenuDiv?.remove()
 
       button.addEventListener('click', (evt) => {
+
         const btn = evt.target;
         let btnText = btn.innerText?.toLowerCase() || ''
 
@@ -32,7 +40,31 @@ setInterval(() => {
     })
   }
 
-  if (isLoggedIn) {
+  if (isLoggedIn && profileMenuDiv === null) {
+    profileMenu()
+
+    const heroSection = document.getElementById('hero-section')
+    heroSection?.remove()
+
+    const authMenu = document.getElementById('auth-action-form')
+    authMenu?.remove()
+
+    userAuctions.hidden = false
+    userAuctions.querySelector('input[type="checkbox"]').removeAttribute('disabled')
+
+    const profilePicture = localStorage.getItem('avatar')
+    if (profilePicture !== null || profilePicture?.length === 0) {
+
+      const menuBtn = document.querySelector('header button:has(> span.sr-only)')
+      Array.from(menuBtn.children).forEach(child => {
+        if (child.tagName.toLowerCase() === 'svg') {
+          child.remove()
+
+          menuBtn.innerHTML += `<img src="${profilePicture}" class="h-[85px] w-[84px] border-4 border-white rounded-full" alt="" />`
+        }
+      })
+
+    }
   }
 
 

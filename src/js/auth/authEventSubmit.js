@@ -106,7 +106,14 @@ export default () => {
     }
 
     Object.keys(response).forEach(key => {
-      localStorage.setItem(`${key}`, response[key])
+      if (response[key].length > 0 || typeof response[key] === "number") {
+        localStorage.setItem(`${key}`, response[key])
+      }
     })
+
+     if (localStorage.getItem('accessToken') !== null) {
+       const userMenu = document.getElementById('user-menu')
+       userMenu.close()
+     }
   })
 }

@@ -1,4 +1,4 @@
-import authEventSetup from "./authEventSetup.js";
+import authEventSetup from "../auth/authEventSetup.js";
 
 export default () => {
   const dialogElement = document.getElementById('user-menu-location')
