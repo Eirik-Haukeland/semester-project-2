@@ -1,4 +1,4 @@
-import timestamp from "./timestamp.js";
+import timestamp from "../tools/timestamp.js";
 
 export default (item) => {
   const {
