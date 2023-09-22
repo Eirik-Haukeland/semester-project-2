@@ -32,3 +32,12 @@ export default (errorList) => {
     }
   })
 }
+
+export const clearErrors = () => {
+  const {errorMessages} = authGetElements()
+
+  errorMessages.forEach(errorSpan => {
+    errorSpan.hidden = true;
+    errorSpan.innerText = ''
+  })
+}

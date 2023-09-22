@@ -14,17 +14,17 @@ setInterval(() => {
     loginRegister()
     const heroButtons = document.querySelectorAll('#hero-section button, header button')
     heroButtons.forEach(button => {
-      console.log(button, button.innerText)
+      // console.log(button, button.innerText)
 
       button.addEventListener('click', (evt) => {
         const btn = evt.target;
-        const btnText = btn.innerText.toLowerCase()
+        let btnText = btn.innerText?.toLowerCase() || ''
 
+        let change = new Event('change')
         if (btnText === 'login') {
-          document.getElementById('auth-action-login').checked = true
-        }
-        if (btnText === 'register') {
-          document.getElementById('auth-action-register').checked = true
+          document.getElementById('auth-action-login').dispatchEvent(change)
+        } else if (btnText === 'register') {
+          document.getElementById('auth-action-register').dispatchEvent(change)
         }
 
         userMenu.showModal()

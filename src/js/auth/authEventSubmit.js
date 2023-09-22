@@ -1,5 +1,5 @@
 import fetchRequester from "../tools/fetchRequester.js";
-import authErrorHandler from "./authErrorHandler.js";
+import authErrorHandler, {clearErrors} from "./authErrorHandler.js";
 import authGetElements from "./authGetElements.js";
 
 export default () => {
@@ -15,15 +15,21 @@ export default () => {
     authRepeatPassword,
     authRepeatPasswordErrors,
     authSubmitButton,
-    selectedRadio,
-    errorMessages
+    authRadios
   } = authGetElements()
 
-  authSubmitButton.addEventListener('click', async () => {
-    errorMessages.hidden = true;
-    errorMessages.innerText = ''
+   authSubmitButton.addEventListener('click', async () => {
+    let selectedRadioValue
 
-    const selectedRadioValue = selectedRadio.value
+     authRadios.forEach(radio => {
+
+       if (radio.checked) {
+         selectedRadioValue = radio.value
+       }
+
+     })
+
+    clearErrors()
 
     let errorInInput = false
     const emailPattern = /^([a-z0-9_\.\+-]+)@(stud.noroff.no)|(noroff.no)/
@@ -54,7 +60,7 @@ export default () => {
       }
 
       const pictureUrlPattern = /(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
-      if (!pictureUrlPattern.test(authPicture.value) || authPicture.value.length !== 0) {
+      if (!pictureUrlPattern.test(authPicture.value) && authPicture.value.length !== 0) {
         authPictureErrors.innerText = 'The profile picture must be a public url linking to picture or empty'
         authPictureErrors.hidden = false
         errorInInput = true
@@ -81,6 +87,8 @@ export default () => {
     }
 
     let response = await fetchRequester(`auth/${selectedRadioValue}`, requestBody)
+
+    console.log(response)
 
     if (response.errors !== undefined) {
       authErrorHandler(response)
