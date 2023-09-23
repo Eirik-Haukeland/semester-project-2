@@ -86,7 +86,12 @@ export default () => {
       return
     }
 
-    let response = await fetchRequester(`auth/${selectedRadioValue}`, requestBody)
+    let response = await fetchRequester(`auth/${selectedRadioValue}`,{
+      method: 'POST',
+      headers: {
+          "Content-Type": "application/json",
+        },
+      body: JSON.stringify(requestBody) } )
 
     console.log(response)
 
@@ -96,8 +101,14 @@ export default () => {
 
     if (selectedRadioValue === 'register') {
       response = await fetchRequester(`auth/login`, {
-        email: authEmail.value,
-        password: authPassword.value
+        method: 'POST',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: authEmail.value,
+          password: authPassword.value
+        })
       })
 
       if (response.errors !== undefined) {
@@ -106,7 +117,7 @@ export default () => {
     }
 
     Object.keys(response).forEach(key => {
-      if (response[key].length > 0 || typeof response[key] === "number") {
+      if ((typeof response[key] === 'string' && response[key].length > 0) || typeof response[key] === "number") {
         localStorage.setItem(`${key}`, response[key])
       }
     })

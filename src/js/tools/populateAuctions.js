@@ -1,5 +1,14 @@
 import makeCard from '../ui/makeCard.js';
 import timestamp from './timestamp.js';
+import singleEntryDisplay from "../ui/singleEntryDisplay.js";
+
+function openSingleEntryModal (evt) {
+  const displaySingleLocation = document.getElementById('single-auction-card')
+  const auctionId = evt.currentTarget.dataset.id
+
+  singleEntryDisplay(auctionId)
+  displaySingleLocation.showModal()
+}
 
 const addAuctions = (auctionArray, placementLocation) => {
   auctionArray.forEach((auction) => placementLocation.innerHTML += makeCard(auction));
@@ -47,5 +56,12 @@ export default (auctionObj) => {
 
       timerText.innerText = timeMessage;
     });
+
+    const auctionCards = placementLocation.getElementsByTagName(`article`)
+
+    Array.from(auctionCards).forEach(card => {
+      card.removeEventListener('click', openSingleEntryModal)
+      card.addEventListener('click', openSingleEntryModal)
+    })
   }, 500);
 };

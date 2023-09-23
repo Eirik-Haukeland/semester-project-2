@@ -4,26 +4,22 @@
  * @param {object} [body] - the optional body object
  * @return {Promise<{error}|any>}
  */
-export default async (path, body) => {
+export default async (path, options) => {
   try {
     if (typeof path !== 'string') {
       throw new TypeError('ERROR: Argument must be a string');
     }
 
-    let noBody = false
-    if (body === undefined || Object.keys(body).length === 0) {
-      noBody = true
-    } else {
-      console.log(body)
+    let noOptions = false
+    if (options === undefined || Object.keys(options).length === 0) {
+      noOptions = true
     }
 
     let response
-    if (noBody) {
+    if (noOptions) {
       response = await fetch(`https://api.noroff.dev/api/v1/auction/${path}`);
     } else {
-      response = await fetch(`https://api.noroff.dev/api/v1/auction/${path}`, { method: 'POST', headers: {
-          "Content-Type": "application/json",
-        }, body: JSON.stringify(body) });
+      response = await fetch(`https://api.noroff.dev/api/v1/auction/${path}`, options);
     }
 
     if (!response.ok) {
