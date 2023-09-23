@@ -8,7 +8,7 @@ export default (item) => {
   } = timestamp(item.endsAt);
 
   return `
-    <div class="bg-gray-200 max-sm:h-[25vw] sm:h-80 sm:w-64 grid max-sm:grid-cols-2 gap-1 sm:grid-cols-1 sm:grid-rows-6 rounded-md overflow-hidden border-2 border-pink-900" data-id="${item.id}">
+    <article id="auction-${item.id}" class="bg-gray-200 max-sm:h-[25vw] sm:h-80 sm:w-64 grid max-sm:grid-cols-2 gap-1 sm:grid-cols-1 sm:grid-rows-6 rounded-md overflow-hidden border-2 border-pink-900" data-id="${item.id}">
       <img class="w-full h-[25vw] sm:h-full row-span-2 sm:row-span-4 max-sm:border-r sm:border-b border-pink-900 object-cover" src="${
         (item?.media.length !== 0)
          ? item.media.shift() 
@@ -26,5 +26,5 @@ export default (item) => {
       </svg>
       <span class="text-sm font-bold self-center whitespace-nowrap ${lessThanADay ? 'text-pink-900' : ''}">${timeMessage}</span>
     </span>
-  </div>`;
+  </article>`;
 }

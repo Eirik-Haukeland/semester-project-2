@@ -12,9 +12,24 @@ setInterval(() => {
   let profileMenuDiv = document.getElementById('profile-menu')
   const userMenu = document.getElementById('user-menu')
   const userAuctions = document.getElementById('user-auctions')
+  const h1 = document.querySelector('h1')
 
   if (!isLoggedIn && authForm === null) {
     loginRegister()
+
+    const heroSection = `
+      <section class="sm:pl-12 xl:pl-64 flex flex-col gap-32 sm:flex-row bg-gray-200 h-min text-2xl" id="hero-section" aria-labelledby="hero-title">
+        <h2 hidden id="hero-title">signe up or register an account</h2>
+        <div class="sm:w-2/5 py-5 gap-y-2 sm:py-0 sm:gap-y-0 grid grid-cols-2 gap-x-2 justify-items-stretch items-stretch h-full">
+          <p class="col-span-2 justify-self-center self-center w-1/2 sm:w-full">Here you can  sell all your unwanted stuff, and get new stuff someone lese don’t want!</p>
+          <button class="capitalize rounded bg-pink-900 text-white px-5 py-1 justify-self-end h-min sm:3/5 lg:w-1/2 min-w-min">register</button>
+          <button class="capitalize rounded bg-neutral-700 text-white px-5 py-1 justify-self-start h-min sm:3/5 lg:w-1/2 min-w-min">login</button>
+        </div>
+        <div class="sm:w-3/5" id="hero-img"></div>
+      </section>
+    `
+    h1.insertAdjacentHTML('afterend', heroSection)
+
     userAuctions.hidden = true
     userAuctions.querySelector('input[type="checkbox"]').setAttribute('disabled', 'disabled')
 

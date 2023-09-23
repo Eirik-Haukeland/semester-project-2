@@ -36,8 +36,8 @@ export default () => {
       }
 
       evt.target.checked = true
-      evt.target.parentElement.children.forEach(element => {
-        if (element.tagName.lowercase() !== optionName) {
+      Array.from(evt.target.parentElement.children).forEach(element => {
+        if (element.tagName === evt.target.tagName && element.value !== optionName) {
           element.checked = false
         }
       })

@@ -12,8 +12,6 @@ export default async () => {
   const tag = document.querySelector('input[name="tagOption"]:checked') || '';
   const searchTag = tag.value !== undefined ? `&_tag=${tag.value}` : '';
 
-  console.log(`${userAuctions}listings?_bids=true${searchSort}${searchTag}`)
-
   const data = await fetchRequester(`${userAuctions}listings?_bids=true${searchSort}${searchTag}`);
 
   let count = -1
