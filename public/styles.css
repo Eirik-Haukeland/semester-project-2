@@ -593,6 +593,9 @@ video {
   height: -moz-fit-content;
   height: fit-content;
 }
+.h-5 {
+  height: 1.25rem;
+}
 .max-h-24 {
   max-height: 6rem;
 }
