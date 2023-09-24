@@ -1,3 +1,5 @@
+import createAuction from "./createAuction.js";
+
 export default () => {
 
   const userMenuButtons = document.getElementById('user-menu-buttons')
@@ -21,7 +23,7 @@ export default () => {
         <span id="profile-menu-credits">${localStorage.getItem('credits')} credits</span>
       </div>
      
-      <button class="self-center bg-pink-900 text-white rounded-md text-bold text-lg w-min h-min p-2 px-3 mt-2 whitespace-nowrap">Auction an Item</button>
+      <button id="makeAuctionItem" class="self-center bg-pink-900 text-white rounded-md text-bold text-lg w-min h-min p-2 px-3 mt-2 whitespace-nowrap">Auction an Item</button>
     </div>
   `
 
@@ -45,5 +47,7 @@ export default () => {
       evt.target.remove()
     })
 
+    const makeAuctionItem = document.getElementById('makeAuctionItem')
+    makeAuctionItem.addEventListener('click', createAuction)
   }, 10)
 }

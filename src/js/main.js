@@ -55,7 +55,11 @@ setInterval(() => {
     })
   }
 
-  if (isLoggedIn && profileMenuDiv === null) {
+  const createAuctionStepOne = document.getElementById('createAuctionStepOne')
+  const createAuctionStepTwo = document.getElementById('createAuctionStepTwo')
+  const createAuctionStepThree = document.getElementById('createAuctionStepThree')
+
+  if (isLoggedIn && profileMenuDiv === null && (createAuctionStepOne === null || createAuctionStepTwo === null || createAuctionStepThree === null)) {
     profileMenu()
 
     const heroSection = document.getElementById('hero-section')
