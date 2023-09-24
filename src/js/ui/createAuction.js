@@ -61,7 +61,7 @@ const createMarkupStepThree = (listing) => `
       <div class="rounded-full border-4 border-pink-900 bg-pink-900 w-[2rem] h-[2rem]"></div>
     </div>
     <div class="flex flex-col-reverse">
-      <input type="datetime-local" required name="create-auction-EndDate" id="create-auction-EndDate" class="text-bold text-lg w-fill rounded-md py-1 px-2">
+      <input type="datetime-local" required name="create-auction-EndDate" id="create-auction-EndDate" min="${new Date().toISOString().slice(0,16)}" class="text-bold text-lg w-fill rounded-md py-1 px-2">
       <label for="create-auction-EndDate" class="text-bold ">End date for your auction</label>
     </div>
     <div class="flex flex-col-reverse">
