@@ -2,8 +2,11 @@ import createAuction from "./createAuction.js";
 
 export default () => {
 
-  const userMenuButtons = document.getElementById('user-menu-buttons')
-  userMenuButtons.innerHTML += `<button id="logout-btn" class="text-bold text-xl p-2 bg-gray-200 mr-2 rounded-md">Logout</button>`
+  const addLogoutBtn = document.getElementById('logout-btn') === null
+  if (addLogoutBtn) {
+    const userMenuButtons = document.getElementById('user-menu-buttons')
+    userMenuButtons.innerHTML += `<button id="logout-btn" class="text-bold text-xl p-2 bg-gray-200 mr-2 rounded-md">Logout</button>`
+  }
 
   const profilePicture = localStorage.getItem('avatar')
   const userMenuLocation = document.getElementById('user-menu-location')

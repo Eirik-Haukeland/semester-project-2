@@ -14,8 +14,8 @@ const createCard = (auctionInfo) => {
     <article class="bg-gray-200">
       <div id="displaySingle-img-location">
         <img id="displaySingle-img" class="min-w-fill h-20rem object-cover" src="${
-    auctionInfo.media.length > 0
-      ? auctionInfo.media.shift()
+    auctionInfo.media?.length > 0
+      ? auctionInfo.media?.shift()
       : '../../public/assets/no-image.svg'
   }" alt="">
         ${
@@ -49,7 +49,7 @@ const createCard = (auctionInfo) => {
             </span>
             
             <div class="flex flex-wrap gap-1">
-              ${auctionInfo.tags?.reduce((returnString, tag) => returnString += `<span class="bg-pink-900 text-white py-1 px-2 rounded w-min whitespace-nowrap">${tag}</span>`, '')}
+              ${auctionInfo.tags?.map(tag => `<span class="bg-pink-900 text-white py-1 px-2 rounded w-min whitespace-nowrap">${tag}</span>`)}
             </div>
           </div>
           
@@ -64,19 +64,26 @@ const createCard = (auctionInfo) => {
       
         <p>${auctionInfo.description}</p>
         
+        ${console.log(auctionInfo.bids)}
+        
         <div class="flex flex-col w-full gap-3">
           <h3 class="text-underline text-bold text-xl">Bids:</h3>
           <ul>
             ${auctionInfo._count.bids > 0
-    ? auctionInfo.bids.reduce((returnString, bid) => returnString += `<li class="flex justify-between odd:bg-gray-300 px-5"><span>${bid.bidderName}: </span><span>${bid.amount}</span></li>`, '')
+    ? auctionInfo.bids?.map(bid => `<li class="flex justify-between odd:bg-gray-300 px-5"><span>${bid.bidderName}: </span><span>${bid.amount}</span></li>`).join('')
     : `<li class="flex justify-between">There is no bids on this auction</li>`
   }
           </ul>
-          <form id="displaySingle-makeBid" class="flex">
-            <input id="displaySingle-makeBid-amount" class="h-full w-full text-lg rounded-l-md py-1 px-2" type="number">
-            <label for="displaySingle-makeBid-amount" class="sr-only">amount you bid:</label>
-            <button id="displaySingle-makeBid-btn" class="bg-pink-900 text-white rounded-r-md text-bold text-lg py-1 px-2 whitespace-nowrap">Palce Bid</button>
-          </form>       
+          ${
+            (auctionInfo.seller?.name !== localStorage.name)
+              ? `<form id="displaySingle-makeBid" class="flex">
+                    <input id="displaySingle-makeBid-amount" class="h-full w-full text-lg rounded-l-md py-1 px-2" type="number">
+                    <label for="displaySingle-makeBid-amount" class="sr-only">amount you bid:</label>
+                    <button id="displaySingle-makeBid-btn" class="bg-pink-900 text-white rounded-r-md text-bold text-lg py-1 px-2 whitespace-nowrap">Place Bid</button>
+                  </form>`
+              : ''
+          }
+                 
         </div>
       </div>
     </article>
@@ -110,8 +117,6 @@ export default async (id) => {
         },
         body: JSON.stringify({ amount: new Number(amountValue), })
       })
-
-      console.log(response)
 
       const exsistingAuction = document.querySelector('#single-auction-card-location > article')
       exsistingAuction.remove()
