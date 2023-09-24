@@ -3,16 +3,13 @@ import populateTags from "./tools/populateTags.js";
 import populateAuctions from "./tools/populateAuctions.js";
 
 export default async () => {
-  const yourAuctions = document.getElementById('search-your-auctions');
-  const userAuctions = yourAuctions.checked ? `profiles/${yourAuctions.value}/` : '';
-
   const sort = document.querySelector('input[name="sort-by"]:checked')
   const searchSort = `&sort=${sort.value === 'endsAt' ? 'endsAt&sortOrder=asc' : 'created'}`;
 
   const tag = document.querySelector('input[name="tagOption"]:checked') || '';
   const searchTag = tag.value !== undefined ? `&_tag=${tag.value}` : '';
 
-  const data = await fetchRequester(`${userAuctions}listings?_bids=true${searchSort}${searchTag}`);
+  const data = await fetchRequester(`listings?_bids=true${searchSort}${searchTag}`);
 
   let count = -1
   // only change tags when not searching with a tag

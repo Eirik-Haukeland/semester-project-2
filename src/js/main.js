@@ -7,11 +7,10 @@ setupSearchEvent('sort-by');
 search();
 
 setInterval(() => {
-  const isLoggedIn = localStorage.getItem('accessToken') !== null
+  let isLoggedIn = localStorage.getItem('accessToken') !== null
   let authForm = document.getElementById('auth-action-form')
   let profileMenuDiv = document.getElementById('profile-menu')
   const userMenu = document.getElementById('user-menu')
-  const userAuctions = document.getElementById('user-auctions')
   const h1 = document.querySelector('h1')
 
   if (!isLoggedIn && authForm === null) {
@@ -29,9 +28,6 @@ setInterval(() => {
       </section>
     `
     h1.insertAdjacentHTML('afterend', heroSection)
-
-    userAuctions.hidden = true
-    userAuctions.querySelector('input[type="checkbox"]').setAttribute('disabled', 'disabled')
 
     const heroButtons = document.querySelectorAll('#hero-section button')
     heroButtons.forEach(button => {
@@ -55,7 +51,9 @@ setInterval(() => {
     })
   }
 
-  if (isLoggedIn && profileMenuDiv === null) {
+  let logoutBtn = document.getElementById('logout-btn')
+
+  if (isLoggedIn && logoutBtn === null) {
     profileMenu()
 
     const heroSection = document.getElementById('hero-section')
@@ -63,9 +61,6 @@ setInterval(() => {
 
     const authMenu = document.getElementById('auth-action-form')
     authMenu?.remove()
-
-    userAuctions.hidden = false
-    userAuctions.querySelector('input[type="checkbox"]').removeAttribute('disabled')
 
     const profilePicture = localStorage.getItem('avatar')
     if (profilePicture !== null || profilePicture?.length === 0) {
